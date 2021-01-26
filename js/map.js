@@ -19,7 +19,7 @@ var stadiaMap = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{
 
 // setting up popups - details
 var detailsPopup = L.popup();
-var detailsPopupContent = "<div id='popup-content'>Unable to fetch data.<a href='#details'>Details</a></div>";
+var detailsPopupContent = "<div id='popup-content'>Unable to fetch data.</div>";
 
 mymap.on("click", (e) => {
 	detailsPopup.setLatLng(e.latlng).setContent(detailsPopupContent).openOn(mymap);
@@ -37,4 +37,8 @@ function showCountryOnMap(points) {
 	countryPolygon.setLatLngs(points).addTo(mymap);
 }
 
-
+// removing marker and polygon
+function removeCountry() {
+	capitalMarker.remove();
+	countryPolygon.remove();
+}
