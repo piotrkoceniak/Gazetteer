@@ -31,3 +31,10 @@ function showCapitalOnMap(coords) {
 	capitalMarker.setLatLng(coords).addTo(mymap);
 };
 
+// adding country polygon to map
+var countryPolygon = L.polygon([], {color: 'black', weight: 1, opacity: 0.3, fillOpacity: 0.2});
+function showCountryOnMap(points) {
+	countryPolygon.setLatLngs(points).addTo(mymap);
+}
+
+
