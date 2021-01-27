@@ -1,6 +1,6 @@
 <?php
     include("data.php");
-    include("countriesNames");
+    include("countriesNames.php");
 
     function sendResponse($status, $data) {
         $output['status']['code'] = "200";
@@ -14,11 +14,12 @@
 
 
     $countryData = array();
-    if($_REQUEST["country"] === "") {
-        sendResponse("empty", $list);
+    if($_REQUEST["country"] == "") {
+        sendResponse("empty", $names);
     } else {
         foreach($names as $key => $value) {
             if(preg_match("/(".$_REQUEST["country"].")/i", $value)) {
+                global $countryData;
                 $countryData[$key] = $value;
             }
         }

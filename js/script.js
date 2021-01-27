@@ -22,12 +22,17 @@ $("#search").on("keypress", function (e, submit) {
     
                 if(response.status.name == "ok") {
                     console.log("Resonse success");
+                } else if(response.status.name == "hints") {
+                    console.log("Resonse success hint");
+                } else if(response.status.name == "empty") {
+                    console.log("Resonse success empty");
                 }
                 
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log("Bad request: " + textStatus);
                 console.log(errorThrown);
+                console.log(jqXHR);
             }
     
         });
