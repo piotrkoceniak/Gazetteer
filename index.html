@@ -6,6 +6,8 @@
         <meta name="author" content="Piotr Koceniak">
         <meta name="description" content="Statistics, informations and map of countries">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- remove below - favicon -->
+        <link rel="icon" href="data:,">
         
         <!-- BOOTSTRAP -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
@@ -26,6 +28,15 @@
         <script src="js/jquery.min.js"></script>
     </head>
     <body>
+        <div id="search-bar" class="container-fluid">
+            <input id="search" type="text" placeholder="Select country" list="countries" autocomplete="off">
+            <datalist id="countries">
+                <option value="Brazil">Brazil</option>
+                <option value="Germany">Germany</option>
+                <option value="France">France</option>
+            </datalist>
+
+        </div>
         <div id="mapid" class="container-fluid"></div>
         <div id="details" class="container-fluid">
             <h1>Details</h1>
