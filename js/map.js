@@ -35,6 +35,7 @@ function showCapitalOnMap(coords) {
 var countryPolygon = L.polygon([], {color: 'black', weight: 1, opacity: 0.3, fillOpacity: 0.2});
 function showCountryOnMap(points) {
 	countryPolygon.setLatLngs(points).addTo(mymap);
+	mymap.fitBounds(countryPolygon.getBounds());
 }
 
 // removing marker and polygon

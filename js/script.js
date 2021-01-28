@@ -15,3 +15,7 @@ $("#search").on("keypress", function (e, submit) {
         });
     }
 });
+
+$("#search-icon").click(function() {
+    $("#search").triggerHandler("keypress", true);
+});
