@@ -32,9 +32,11 @@ function showCapitalOnMap(coords) {
 };
 
 // adding country polygon to map
-var countryPolygon = L.polygon([], {color: 'black', weight: 1, opacity: 0.3, fillOpacity: 0.2});
+//var countryPolygon = L.polygon([], {color: 'black', weight: 1, opacity: 0.3, fillOpacity: 0.2});
+var countryPolygon = L.geoJSON(null, {style: {color: 'black', weight: 1, opacity: 0.3, fillOpacity: 0.2}});
 function showCountryOnMap(points) {
-	countryPolygon.setLatLngs(points).addTo(mymap);
+	//countryPolygon.setLatLngs(points).addTo(mymap);
+	countryPolygon.clearLayers().addData(points).addTo(mymap);
 	mymap.fitBounds(countryPolygon.getBounds());
 }
 

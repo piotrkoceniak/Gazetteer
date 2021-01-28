@@ -13,7 +13,7 @@
         echo json_encode($output);
     }
 
-
+    /*
     // removing duplicated starting point from coordinates array for leaflet polygons
     function prepareDataArray($rawArray) {
         $coordinatesRaw = $rawArray["geometry"];
@@ -45,14 +45,15 @@
         $rawArray["geometry"]["coordinates"] = $processedCoordinates;
         return($rawArray);
     }
-
-
+    */
+    
     $countryData = array();
-    $countryNameSearch = ucfirst(strtolower($_REQUEST["country"]));
+    $countryNameSearch = strtolower($_REQUEST["country"]);
     
     if($countryNameSearch == "") {
         sendResponse("empty", $names);
     } else {
+        // preparing hints
         foreach($names as $key => $value) {
             if(preg_match("/(".$countryNameSearch.")/i", $value)) {
                 global $countryData;
@@ -60,13 +61,23 @@
             }
         }
         
-        $found = array_search($countryNameSearch, $countryData);
-        if($found) {
-            sendResponse("ok", prepareDataArray($list["features"][$found]));
+        $found = false;
+        // array_search - eqiuvalent - looking for exact matches 
+        foreach($countryData as $key => $value) {
+            if($countryNameSearch == strtolower($value)) {
+                $found = $key;
+            }
+        }
+        // determinig response as exact match or hint
+        if($found === 0 || $found) {
+            //sendResponse("ok", prepareDataArray($list["features"][$found]));
+            sendResponse("ok", $list["features"][$found]);
         } else {
             sendResponse("hints", $countryData);
         }
     }
+
+    
     
 
 

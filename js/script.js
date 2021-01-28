@@ -1,6 +1,9 @@
 import {getCountries, handleCountryResponse, setOptionsInDatalist} from "./Requests/countries.js";
 
 console.log("Script loaded");
+getCountries("", function(response) {
+    handleCountryResponse(response);
+});
 
 $("#search").on("input", function (e) {
     getCountries(e.target.value, function(response) {
