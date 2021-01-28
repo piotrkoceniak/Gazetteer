@@ -1,4 +1,4 @@
-function getCountries(dataObj, successFuntion) {
+function getCountries(dataObj) {
     $.ajax({
         url: "php/countries.php",
         type: "POST",
@@ -6,7 +6,7 @@ function getCountries(dataObj, successFuntion) {
         data: {
             country: dataObj
         },
-        success: successFuntion ,
+        success: handleCountryResponse,
         error: function(jqXHR, textStatus, errorThrown) {
             console.log("Bad request: " + textStatus);
             console.log(errorThrown);
@@ -25,10 +25,7 @@ function setOptionsInDatalist(namesObj) {
 }
 
 function handleCountryResponse(response) {
-    console.log(response);
-
         if(response.status.name == "ok") {
-            //showCountryOnMap(response.data.geometry.coordinates);
             showCountryOnMap(response.data.geometry);
             $("#search").val(response.data.properties.name).blur();
         } else if(response.status.name == "hints") {
@@ -38,4 +35,6 @@ function handleCountryResponse(response) {
         }
 }
 
-export {getCountries, setOptionsInDatalist, handleCountryResponse}
+
+
+export {getCountries}

@@ -21,10 +21,6 @@ L.control.scale().addTo(mymap);
 var detailsPopup = L.popup();
 var detailsPopupContent = "<div id='popup-content'>Unable to fetch data.</div>";
 
-mymap.on("click", (e) => {
-	detailsPopup.setLatLng(e.latlng).setContent(detailsPopupContent).openOn(mymap);
-});
-
 // setting up capital markers
 var capitalMarker = L.marker(null, {title: "Capital city."});
 function showCapitalOnMap(coords) {
@@ -32,10 +28,8 @@ function showCapitalOnMap(coords) {
 };
 
 // adding country polygon to map
-//var countryPolygon = L.polygon([], {color: 'black', weight: 1, opacity: 0.3, fillOpacity: 0.2});
 var countryPolygon = L.geoJSON(null, {style: {color: 'black', weight: 1, opacity: 0.3, fillOpacity: 0.2}});
 function showCountryOnMap(points) {
-	//countryPolygon.setLatLngs(points).addTo(mymap);
 	countryPolygon.clearLayers().addData(points).addTo(mymap);
 	mymap.fitBounds(countryPolygon.getBounds());
 }
@@ -44,4 +38,19 @@ function showCountryOnMap(points) {
 function removeCountry() {
 	capitalMarker.remove();
 	countryPolygon.remove();
+}
+
+// setting popup content
+function setPopupContent(countryName, locationName, countryCode) {
+	let table = `<table id="popup-table">
+		<tr>
+			<th>Coutry:</th>
+			<td>${countryName}</td>
+		</tr>
+		<tr>
+			<th>Nearest location:</th>
+			<td>${locationName}</td>
+		</tr></table>`;
+	let image = `<img id="popup-country-flag" src="https://www.countryflags.io/${countryCode}/flat/64.png">`;
+	detailsPopupContent = `<div id='popup-content'>${table}${image}</div>`;
 }
