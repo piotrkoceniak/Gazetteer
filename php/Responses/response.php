@@ -1,5 +1,4 @@
 <?php
-    include("../test.php");
 
     function sendResponse($status, $data) {
         $output['status']['code'] = "200";
@@ -8,7 +7,6 @@
     
         header('Content-Type: application/json; charset=UTF-8');
         
-        test($output);
         echo json_encode($output);
     }
 

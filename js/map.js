@@ -31,7 +31,6 @@ function showCapitalOnMap(coords) {
 var countryPolygon = L.geoJSON(null, {style: {color: 'black', weight: 1, opacity: 0.3, fillOpacity: 0.2}});
 function showCountryOnMap(points) {
 	countryPolygon.clearLayers().addData(points).addTo(mymap);
-	mymap.fitBounds(countryPolygon.getBounds());
 }
 
 // removing marker and polygon
@@ -44,7 +43,7 @@ function removeCountry() {
 function setPopupContent(countryName, locationName, countryCode) {
 	let table = `<table id="popup-table">
 		<tr>
-			<th>Coutry:</th>
+			<th>Country:</th>
 			<td>${countryName}</td>
 		</tr>
 		<tr>

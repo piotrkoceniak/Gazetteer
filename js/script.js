@@ -18,12 +18,12 @@ $("#search-icon").click(function() {
     $("#search").triggerHandler("keypress", true);
 });
 
+var clickedCoutry = "";
 //  CHECK - TODO
 mymap.on("click", (e) => {
     console.log("map event");
-    console.log(e);
-
-    getCountryFromGeocodes(e.latlng);
+    console.log(e.latlng);
+    getCountryFromGeocodes(e.latlng, clickedCoutry);
 
 	detailsPopup.setLatLng(e.latlng).openOn(mymap);
 });

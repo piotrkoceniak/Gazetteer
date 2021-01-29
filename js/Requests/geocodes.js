@@ -1,12 +1,13 @@
 import {getCountries, handleCountryResponse} from "./countries.js";
 
-function getCountryFromGeocodes(lonlatObj) {
+function getCountryFromGeocodes(lonlatObj, lastClicked) {
     console.log("Requesting");
     $.ajax({
         url: "./php/geocodes.php",
         type: "POST",
         dataType: "json",
         data: {
+            lastSelected: lastClicked,
             lng: lonlatObj.lng,
             lat: lonlatObj.lat
         },
@@ -20,12 +21,13 @@ function getCountryFromGeocodes(lonlatObj) {
 }
 // TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 function handleGeoResponse(response) {
-        if(response.status.name === "ok") {
-            handleCountryResponse(response);
+        if(response.status.name == "ok") {
+            showCountryOnMap(response.data.geometry);
+            $("#search").val(response.data.properties.name).blur();
             setPopupContent(response.data.properties.name, response.data.geocodes[0].name, response.data.geocodes[0].country);
         } else {
             removeCountry();
-            setPopupContent("None", "Unavailable", false);
+            setPopupContent("", "Unavailable", false);
             getCountries("");
         }
 
