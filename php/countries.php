@@ -1,11 +1,13 @@
 <?php
     include("Data/data.php");
     include("Data/countriesNames.php");
+    include("Data/countriesCodes.php");
     include("Responses/response.php");
 
     $countryData = array();
     $countryNameSearch = strtolower($_REQUEST["country"]);
-    
+
+
     if($countryNameSearch == "") {
         sendResponse("empty", $names);
     } else {
@@ -26,7 +28,6 @@
         }
         // determinig response as exact match or hint
         if($found === 0 || $found) {
-            //sendResponse("ok", prepareDataArray($list["features"][$found]));
             sendResponse("ok", $list["features"][$found]);
         } else {
             sendResponse("hints", $countryData);

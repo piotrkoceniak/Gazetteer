@@ -25,16 +25,16 @@ function setOptionsInDatalist(namesObj) {
 }
 
 function handleCountryResponse(response) {
-        if(response.status.name == "ok") {
+        if(response.status.name === "ok") {
             showCountryOnMap(response.data.geometry);
             $("#search").val(response.data.properties.name).blur();
-        } else if(response.status.name == "hints") {
+        } else if(response.status.name === "hints") {
             $("#countries").empty().append(setOptionsInDatalist(response.data));
-        } else if(response.status.name == "empty") {
+        } else if(response.status.name === "empty") {
             $("#countries").empty().append(setOptionsInDatalist(response.data));
         }
 }
 
 
 
-export {getCountries}
+export {getCountries, handleCountryResponse}

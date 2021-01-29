@@ -37,7 +37,7 @@ function showCountryOnMap(points) {
 // removing marker and polygon
 function removeCountry() {
 	capitalMarker.remove();
-	countryPolygon.remove();
+	countryPolygon.clearLayers();
 }
 
 // setting popup content
@@ -51,6 +51,7 @@ function setPopupContent(countryName, locationName, countryCode) {
 			<th>Nearest location:</th>
 			<td>${locationName}</td>
 		</tr></table>`;
-	let image = `<img id="popup-country-flag" src="https://www.countryflags.io/${countryCode}/flat/64.png">`;
+	let image = countryCode ? `<img id="popup-country-flag" src="https://www.countryflags.io/${countryCode.toLowerCase()}/flat/64.png">` : '<img id="popup-country-flag" src="">';
 	detailsPopupContent = `<div id='popup-content'>${table}${image}</div>`;
+	detailsPopup.setContent(detailsPopupContent);
 }

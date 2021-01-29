@@ -1,16 +1,16 @@
-function getCountryFromGeocodes(lonlatObj, handleType) {
+import {getCountries, handleCountryResponse} from "./countries.js";
+
+function getCountryFromGeocodes(lonlatObj) {
+    console.log("Requesting");
     $.ajax({
-        url: "php/geocodes.php",
+        url: "./php/geocodes.php",
         type: "POST",
         dataType: "json",
-        handle: handleType,
         data: {
             lng: lonlatObj.lng,
             lat: lonlatObj.lat
         },
-        success: function(response) {
-            handleGeoResponse(response, this.handle);
-        },
+        success: handleGeoResponse,
         error: function(jqXHR, textStatus, errorThrown) {
             console.log("Bad request: " + textStatus);
             console.log(errorThrown);
@@ -19,14 +19,20 @@ function getCountryFromGeocodes(lonlatObj, handleType) {
     });
 }
 // TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-function handleGeoResponse(response, type) {
-    if(type == "same") {
-        setPopupContent(response.data.countryName, response.data[0].name, response.data[0].country.toLowerCase());
-    } else if(type == "new" || type == "empty") {
-        setPopupContent(response.data.countryName, response.data[0].name, response.data[0].country.toLowerCase());
-        //getCountryDetails(response.data[0].country.toLowerCase(), true);
-    }
-    console.log(response);
+function handleGeoResponse(response) {
+        if(response.status.name === "ok") {
+            handleCountryResponse(response);
+            setPopupContent(response.data.properties.name, response.data.geocodes[0].name, response.data.geocodes[0].country);
+        } else {
+            removeCountry();
+            setPopupContent("None", "Unavailable", false);
+            getCountries("");
+        }
+
+        // Create thing below
+        //getCountryDetails(response.data[0].country, true);
+        console.log("Geo Response is:");
+        console.log(response);
 }
 
 export {getCountryFromGeocodes}
