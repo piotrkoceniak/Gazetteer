@@ -1,5 +1,6 @@
 import {getCountries} from "./Requests/countries.js";
 import {getCountryFromGeocodes} from "./Requests/geocodes.js";
+//import {getCountryDetails} from "./Requests/details.js";
 
 console.log("Script loaded");
 getCountries("");
@@ -18,12 +19,14 @@ $("#search-icon").click(function() {
     $("#search").triggerHandler("keypress", true);
 });
 
-var clickedCoutry = "";
-//  CHECK - TODO
+
 mymap.on("click", (e) => {
-    console.log("map event");
     console.log(e.latlng);
-    getCountryFromGeocodes(e.latlng, clickedCoutry);
+    getCountryFromGeocodes(e.latlng);
 
 	detailsPopup.setLatLng(e.latlng).openOn(mymap);
+});
+
+$("#details-button").click(function(e) {
+    //getCountryDetails(e.target.attr("data-country"));
 });

@@ -2,7 +2,7 @@
     include("Data/data.php");
     include("Data/countriesNames.php");
     include("Data/countriesCodes.php");
-    include("Responses/response.php");
+    include("Functions/response.php");
 
     $countryData = array();
     $countryNameSearch = strtolower($_REQUEST["country"]);

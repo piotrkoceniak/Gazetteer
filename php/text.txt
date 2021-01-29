@@ -1,1 +1,1 @@
--106
+{"codes":[{"code":"WAD","level":"1","type":"ISO3166-2"}],"adminCode1":"13","distance":0,"countryCode":"EG","countryName":"Egypt","adminName1":"New Valley"}

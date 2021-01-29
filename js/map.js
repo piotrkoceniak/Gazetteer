@@ -47,10 +47,12 @@ function setPopupContent(countryName, locationName, countryCode) {
 			<td>${countryName}</td>
 		</tr>
 		<tr>
-			<th>Nearest location:</th>
+			<th>Region:</th>
 			<td>${locationName}</td>
 		</tr></table>`;
 	let image = countryCode ? `<img id="popup-country-flag" src="https://www.countryflags.io/${countryCode.toLowerCase()}/flat/64.png">` : '<img id="popup-country-flag" src="">';
-	detailsPopupContent = `<div id='popup-content'>${table}${image}</div>`;
+	let detailsButton = `<a id="details-button" href="#details" data-country=${countryCode}>Details</a>`;
+	
+	detailsPopupContent = `<div id='popup-content'>${table}${image}${detailsButton}</div>`;
 	detailsPopup.setContent(detailsPopupContent);
 }
