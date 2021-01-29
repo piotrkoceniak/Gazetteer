@@ -18,3 +18,6 @@ function getCountryDetails(countryCode) {
 function handleDetailsResponse(response) {
     console.log(response);
 }
+
+
+export {getCountryDetails};

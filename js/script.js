@@ -1,6 +1,6 @@
 import {getCountries} from "./Requests/countries.js";
 import {getCountryFromGeocodes} from "./Requests/geocodes.js";
-//import {getCountryDetails} from "./Requests/details.js";
+import {getCountryDetails} from "./Requests/details.js";
 
 console.log("Script loaded");
 getCountries("");
@@ -27,6 +27,7 @@ mymap.on("click", (e) => {
 	detailsPopup.setLatLng(e.latlng).openOn(mymap);
 });
 
-$("#details-button").click(function(e) {
-    //getCountryDetails(e.target.attr("data-country"));
+$("#mapid").on("click", "#details-button", function(e) {
+    console.log("Sending");
+    getCountryDetails($("#details-button").attr("data-country"));
 });

@@ -1,7 +1,7 @@
 <?php
     include("Functions/response.php");
     include("Functions/apiRequest.php");
-
+    include("test.php");
 
     
     // fetching details
@@ -11,7 +11,7 @@
     
     
     // getting neighbours
-    $neighboursUrl = "http://api.geonames.org/neighboursJSON?geonameId=".$details["geonames"]["geonameId"]."&username=pkoceniak";
+    $neighboursUrl = "http://api.geonames.org/neighboursJSON?geonameId=".$details["geonames"][0]["geonameId"]."&username=pkoceniak";
 
     $neighbours = sendRequest($neighboursUrl);
 
@@ -20,6 +20,13 @@
 
     $cities = sendRequest($citiesUrl);
 
+    // getting currnet weather 
+    
+    // response
 
+    $responseData["details"] = $details["geonames"][0];
+    $responseData["neighbours"] = $neighbours["geonames"];
+    $responseData["cities"] = $cities["geonames"];
+    sendResponse("ok", $responseData);
 
 ?>
