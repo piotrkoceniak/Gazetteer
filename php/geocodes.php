@@ -9,11 +9,15 @@ $url = "http://api.geonames.org/countrySubdivisionJSON?lat=".$_REQUEST["lat"]."&
 
 $decode = sendRequest($url);
 test($decode);
-if(sizeof($decode) > 0) { 
+if(array_key_exists("codes", $decode)) { 
   $countryKey = array_search($decode["countryCode"], $codes);
-  $responseData = $list["features"][$countryKey];
-  $responseData["geocodes"] = $decode;
-  sendResponse("ok", $responseData); 
+  if($countryKey) {  
+    $responseData = $list["features"][$countryKey];
+    $responseData["geocodes"] = $decode;
+    sendResponse("ok", $responseData); 
+  } else {
+    sendResponse("empty", "No data");  
+  } 
 } else {
   sendResponse("empty", "No data");
 }
