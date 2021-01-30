@@ -1,3 +1,5 @@
+import {getWeather} from "./weather.js";
+
 function getCountryDetails(countryCode) {
     $.ajax({
         url: "php/details.php",
@@ -26,9 +28,9 @@ function handleDetailsResponse(response) {
     $("#c-capital").html(response.data.details.capital);
     $("#c-cities").html(formatString(response, "cities"));
     $("#c-postal-code").html(response.data.details.postalCodeFormat);
-
-
-    //getWeather(response.data.details.capital);
+    
+    
+    getWeather(response.data.details.capital);
 }
 
 function formatString(response, key) {

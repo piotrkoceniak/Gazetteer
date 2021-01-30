@@ -1,6 +1,7 @@
 import {getCountries} from "./Requests/countries.js";
 import {getCountryFromGeocodes} from "./Requests/geocodes.js";
 import {getCountryDetails} from "./Requests/details.js";
+import {getWeather} from "./Requests/weather.js";
 
 console.log("Script loaded");
 getCountries("");
