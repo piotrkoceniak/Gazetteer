@@ -1,1 +1,1 @@
-{"codes":[{"code":"07","level":"1","type":"ISO3166-2"}],"adminCode1":"07","distance":0,"countryCode":"IR","countryName":"Iran","adminName1":"Fars"}
+{"codes":[{"code":"ME","level":"1","type":"ISO3166-2"}],"adminCode1":"ME","distance":0,"countryCode":"LU","countryName":"Luxembourg","adminName1":"Mersch"}
