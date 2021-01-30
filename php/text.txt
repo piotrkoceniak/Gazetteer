@@ -1,1 +1,1 @@
-{"codes":[{"code":"08","level":"1","type":"ISO3166-2"}],"adminCode1":"09","distance":0,"countryCode":"PT","countryName":"Portugal","adminName1":"Faro"}
+{"codes":[{"code":"07","level":"1","type":"ISO3166-2"}],"adminCode1":"07","distance":0,"countryCode":"IR","countryName":"Iran","adminName1":"Fars"}
