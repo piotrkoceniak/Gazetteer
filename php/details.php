@@ -23,7 +23,6 @@
     // getting currnet weather 
     
     // response
-
     $responseData["details"] = $details["geonames"][0];
     $responseData["neighbours"] = $neighbours["geonames"];
     $responseData["cities"] = $cities["geonames"];

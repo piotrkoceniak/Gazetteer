@@ -1,6 +1,4 @@
 function getWeather(capitalName) {
-    console.log("sent");
-
     $.ajax({
         url: "php/weather.php",
         type: "POST",
@@ -18,10 +16,9 @@ function getWeather(capitalName) {
 }
 
 function handleWeatherResponse(response) {
-    console.log("received");
-    console.log(response);
     let iconUrl = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`;
-    
+    let content = `<img src=${iconUrl} alt="Weather icon"> ${response.data.weather[0].description}, ${response.data.main.temp} &#8451;`;
+    $("#c-current-weather").html(content).append(`<button id="weather-button" data-city=${response.data.name}>Show More</button>`);
 }
 
 
