@@ -8,7 +8,7 @@
     $t = time() - (60*60*24*1);
     
     // API urls
-    $forecastUrl = "https://api.openweathermap.org/data/2.5/onecall?units=metric&lang=en&lat=".$_REQUEST["lat"]."&lon=".$_REQUEST["lon"]."&exclude=current&appid=".$APIKey;
+    $forecastUrl = "https://api.openweathermap.org/data/2.5/onecall?units=metric&lang=en&lat=".$_REQUEST["lat"]."&lon=".$_REQUEST["lon"]."&appid=".$APIKey;
     $historicalUrl = "http://api.openweathermap.org/data/2.5/onecall/timemachine?units=metric&lang=en&lat=".$_REQUEST["lat"]."&lon=".$_REQUEST["lon"]."&dt=".$t."&appid=".$APIKey;
     
     // requests
