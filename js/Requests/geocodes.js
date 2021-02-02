@@ -1,7 +1,6 @@
 import {getCountries} from "./countries.js";
 
 function getCountryFromGeocodes(lonlatObj) {
-    console.log("Requesting");
     $.ajax({
         url: "./php/geocodes.php",
         type: "POST",
@@ -20,7 +19,6 @@ function getCountryFromGeocodes(lonlatObj) {
 }
 
 function handleGeoResponse(response) {
-    console.log(response);
         if(response.status.name == "ok") {
             showCountryOnMap(response.data.geometry);
             $("#search").val(response.data.properties.name).blur();

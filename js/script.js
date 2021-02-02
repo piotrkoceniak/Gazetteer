@@ -52,7 +52,7 @@ $("#mapid").on("click", "#details-button", function(e) {
     getCountryDetails($("#details-button").attr("data-country"));
 });
 
-$("#mapid").on("click", "#weather-button", function(e) {
-    getWeatherDetails($("#wether-button").attr("data-city"));
+$("#details").on("click", "#weather-button", function(e) {
+    getWeatherDetails($("#weather-button").attr("data-city-lon"), $("#weather-button").attr("data-city-lat"));
     $("#details-weather").show();
 });

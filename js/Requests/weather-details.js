@@ -1,10 +1,11 @@
-function getWeatherDetails(city) {
+function getWeatherDetails(lon, lat) {
     $.ajax({
         url: "php/weatherDetails.php",
         type: "POST",
         dataType: "json",
         data: {
-            city
+            lon,
+            lat
         },
         success: handleWeatherDetailsResponse,
         error: function(jqXHR, textStatus, errorThrown) {
@@ -16,6 +17,7 @@ function getWeatherDetails(city) {
 }
 
 function handleWeatherDetailsResponse(response) {
+    console.log("Received");
     console.log(response);
 }
 

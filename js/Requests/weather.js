@@ -16,9 +16,12 @@ function getWeather(capitalName) {
 }
 
 function handleWeatherResponse(response) {
+    console.log(response);
+    console.log(response.data.name);
     let iconUrl = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`;
     let content = `<img src=${iconUrl} alt="Weather icon"> ${response.data.weather[0].description}, ${response.data.main.temp} &#8451;`;
-    $("#c-current-weather").html(content).append(`<button id="weather-button" data-city=${response.data.name}>Show More</button>`);
+    content += `<button id="weather-button" data-city-lon=${response.data.coord.lon} data-city-lat=${response.data.coord.lat}>Show More</button>`;
+    $("#c-current-weather").html(content);
 }
 
 
