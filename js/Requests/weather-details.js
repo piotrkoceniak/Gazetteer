@@ -21,8 +21,23 @@ function handleWeatherDetailsResponse(response) {
     console.log(response);
     console.log("setting");
     setCurrent(response);
+    setForecast(response);
     console.log("SET");
     $("#details-weather-content").show();
+    $("#details-weather-content > div").show();
+}
+
+function setForecast(response) {
+  console.log("setting forecast");
+  $("#details-weather-forecast").empty();
+  $("#details-weather-forecast").append("<h4>Next hour</h4>");
+  $("#details-weather-forecast").append("<div id='forecast-hour'></div>");
+  $("#details-weather-forecast").append("<h4>Next 48 hours</h4>");
+  $("#details-weather-forecast").append("<div class='ct-chart ct-square' id='forecast-2days'></div>");
+  $("#details-weather-forecast").append("<h4>Next week</h4>");
+  $("#details-weather-forecast").append("<div class='ct-chart ct-square' id='forecast-week'></div>");
+
+  createHourChart(response.data.forecast.minutely);
 }
 
 function setCurrent(response) {
@@ -125,6 +140,23 @@ function windDirection(degree) {
           deg = "No data";
       }
     return deg;
+}
+
+function createHourChart(data) {
+  if(data != undefined) {
+      let dataAsCSV = 'Time, Precipitation volume (mm)\n';
+    
+    data.forEach(function(object) {
+      let time = new Date(object.dt * 1000);
+      let string = `${time.toISOString()},${object.precipitation}\n`;
+      
+      dataAsCSV += string;
+    });
+    
+    const graph = new Dygraph(document.getElementById("forecast-hour"), dataAsCSV);
+  } else {
+    $("#forecast-hour").html("Forecast unavailable.");
+  }
 }
 
 export {getWeatherDetails};

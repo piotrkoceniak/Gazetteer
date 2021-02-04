@@ -7,7 +7,7 @@ import {getWeatherDetails} from "./Requests/weather-details.js";
 console.log("Script loaded");
 getCountries("");
 
-$("#details, #details div").hide();
+//$("#details, #details div").hide();
 
 $("#details").mouseleave(function(e) {
     $("#details-content").hide();

@@ -18,7 +18,7 @@
     // response
     $weather["forecast"] = $forecastWeather;
     $weather["historical"] = $historicalWeather;
-    test($weather);
+    
     sendResponse("ok", $weather);
 
 ?>
