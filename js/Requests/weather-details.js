@@ -35,10 +35,11 @@ function setForecast(response) {
   $("#details-weather-forecast").append("<h4>Next 48 hours</h4>");
   $("#details-weather-forecast").append("<div id='forecast-2days'></div>");
   $("#details-weather-forecast").append("<h4>Next week</h4>");
-  $("#details-weather-forecast").append("<div class='ct-chart ct-square' id='forecast-week'></div>");
+  $("#details-weather-forecast").append("<div id='forecast-week'></div>");
 
   createHourChart(response.data.forecast.minutely);
   create48Chart(response.data.forecast.hourly);
+  createWeekDays(response.data.forecast.daily, response.data.forecast.timezone_offset);
 }
 
 function setCurrent(response) {
@@ -170,6 +171,57 @@ function create48Chart(data) {
   } else {
     $("#forecast-2days").html("Forecast unavailable.");
   }
+}
+
+function createWeekDays(data, time_Offset) {
+  let div = $("#forecast-week").empty();
+  var weekday = new Array(7);
+  weekday[0] = "Sunday";
+  weekday[1] = "Monday";
+  weekday[2] = "Tuesday";
+  weekday[3] = "Wednesday";
+  weekday[4] = "Thursday";
+  weekday[5] = "Friday";
+  weekday[6] = "Saturday";
+
+  data.forEach(function(day, index) {
+    let rows = "";
+
+    // time - timezone, sunrise, sunset
+    let timeOffset = time_Offset;
+    let sunrise = new Date((day.sunrise + timeOffset) * 1000);
+    let sunset = new Date((day.sunset + timeOffset) * 1000);
+  
+    rows += `<tr><th>Sunrise</th><td>${sunrise.toLocaleTimeString()} local time</td></tr>`;
+    rows += `<tr><th>Sunset</th><td>${sunset.toLocaleTimeString()} local time</td></tr>`;
+    
+    // temperature - current, feels like
+    rows += `<tr><th>Max temperature</th><td>${day.temp.max}&nbsp;&#8451;</td></tr>`;
+    rows += `<tr><th>Feels like</th><td>${day.feels_like.day}&nbsp;&#8451;</td></tr>`;
+    rows += `<tr><th>Humidity</th><td>${day.humidity}&nbsp;%</td></tr>`;
+    rows += `<tr><th>Atmospheric pressure (on sea level)</th><td>${day.pressure}&nbsp;hPa</td></tr>`;
+
+    // wind
+    let windSpeed = (day.wind_speed / 1000) * (60 * 60);
+
+    rows += `<tr><th>Wind speed</th><td>${windSpeed.toFixed(2)}&nbsp;km/h</td></tr>`;
+    rows += `<tr><th>Wind direction</th><td>${windDirection(day.wind_deg)}</td></tr>`;
+
+    // clouds, rain or snow
+    rows += `<tr><th>Cloudiness</th><td>${day.clouds}&nbsp;%</td></tr>`;
+    rows += `<tr><th>Clouds</th><td><img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="weather icon">${day.weather[0].description}</td></tr>`;
+    if(day.snow) {
+        rows += `<tr><th>Snow</th><td>${day.snow}&nbsp;mm</td></tr>`;
+    } else if(day.rain) {
+        rows += `<tr><th>Rain</th><td>${day.rain}&nbsp;mm</td></tr>`;
+    }
+
+    rows += `<tr><th>Ultraviolet radiation index</th><td>${day.uvi}</td></tr>`;
+    
+    let dataTime = new Date(day.dt * 1000);
+    let table = `<div id="forecast-week-${index}"><h5>${weekday[dataTime.getDay()]}</h5><table>${rows}</table></div>`;
+    div.append(table);
+  });
 }
 
 function chart(id, data, keys, labels) {
