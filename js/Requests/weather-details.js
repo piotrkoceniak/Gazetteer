@@ -17,18 +17,22 @@ function getWeatherDetails(lon, lat) {
 }
 
 function handleWeatherDetailsResponse(response) {
-    console.log("Received");
-    console.log(response);
-    console.log("setting");
     setCurrent(response);
     setForecast(response);
-    console.log("SET");
+    setHistory(response);
     $("#details-weather-content").show();
     $("#details-weather-content > div").show();
 }
 
+function setHistory(response) {
+  $("#details-weather-history").append("<div id='temperature-history'></div>");
+  $("#details-weather-history").append("<div id='rain-history'></div>");
+
+  chart('temperature-history', response.data.historical.hourly, ["temp", "feels_like"], ["Temperature (celsius)", "Feels like (celsius)"]);
+  chart('rain-history', response.data.historical.hourly, ["rain", "snow"], ["Rain (mm)", "Snow (mm)"]);
+}
+
 function setForecast(response) {
-  console.log("setting forecast");
   $("#details-weather-forecast").empty();
   $("#details-weather-forecast").append("<h4>Next hour</h4>");
   $("#details-weather-forecast").append("<div id='forecast-hour'></div>");

@@ -16,8 +16,6 @@ function getWeather(capitalName) {
 }
 
 function handleWeatherResponse(response) {
-    console.log(response);
-    console.log(response.data.name);
     let time = new Date(response.data.dt * 1000);
     let iconUrl = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`;
     let content = `<img src=${iconUrl} alt="Weather icon"> ${response.data.weather[0].description}, ${response.data.main.temp} &#8451; (data time: ${time.toLocaleTimeString()})`;
