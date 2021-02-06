@@ -18,9 +18,10 @@ function getCountryDetails(countryCode) {
 }
 
 function handleDetailsResponse(response) {
+    console.log(response);
     $("#c-name").html("Details - " + response.data.details.countryName);
     $("#full-c-name").html(response.data.fullName);
-    $("#c-population").html(formatPopulation(response.data.details.population));
+    $("#c-population").html(formatPopulation(response.data.details.population) + ` <button id="population-button" data-country=${response.data.details.countryCode.toLowerCase()}>Show More</button>`);
     $("#c-area").html(formatArea(response.data.details.areaInSqKm));
     $("#c-currency").html(response.data.details.currencyCode);
     $("#c-neighbours").html(formatString(response, "neighbours") || "No borders on land.");

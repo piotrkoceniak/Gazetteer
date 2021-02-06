@@ -1,8 +1,8 @@
 import {getCountries} from "./Requests/countries.js";
 import {getCountryFromGeocodes} from "./Requests/geocodes.js";
 import {getCountryDetails} from "./Requests/details.js";
-//import {getWeather} from "./Requests/weather.js";
 import {getWeatherDetails} from "./Requests/weather-details.js";
+import {getPopulationDetails} from "./Requests/population-details.js";
 
 console.log("Script loaded");
 getCountries("");
@@ -56,3 +56,9 @@ $("#details").on("click", "#weather-button", function(e) {
     getWeatherDetails($("#weather-button").attr("data-city-lon"), $("#weather-button").attr("data-city-lat"));
     $("#details-weather").show();
 });
+
+$("#details").on("click", "#population-button", function(e) {
+    getPopulationDetails($("#population-button").attr("data-country"));
+    $("#details-population").show();
+});
+
