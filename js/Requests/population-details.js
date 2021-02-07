@@ -18,16 +18,16 @@ function getPopulationDetails(countryCode) {
 function handlePopulationDetailsResponse(response) {
     console.log(response);
 
-    let dataAsCSV = `Year`;
-    dataAsCSV += ", Total population";
-    dataAsCSV += "\n";
+    let dataAsCSV = "";
     response.data[1].forEach(function(year) {  
         let string = "";
         if(year.value) {
             string = `${year.date}, ${year.value}\n`;
         }
-        dataAsCSV += string;
+        dataAsCSV = string + dataAsCSV;
     });
+    dataAsCSV = `Year, Total population\n` + dataAsCSV;
+
     const options = {
         labelsKMB: true,
         plotter: barChartPlotter,

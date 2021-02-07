@@ -3,6 +3,7 @@ import {getCountryFromGeocodes} from "./Requests/geocodes.js";
 import {getCountryDetails} from "./Requests/details.js";
 import {getWeatherDetails} from "./Requests/weather-details.js";
 import {getPopulationDetails} from "./Requests/population-details.js";
+import {getCurrencyDetails} from "./Requests/currency-details.js";
 
 console.log("Script loaded");
 getCountries("");
@@ -22,6 +23,9 @@ $("#details-close-button").click(function() {
 });
 $("#weather-close-button").click(function() {
     $("#details-weather").hide();
+});
+$("#population-close-button").click(function() {
+    $("#details-population").hide();
 });
 
 // search events
@@ -62,3 +66,8 @@ $("#details").on("click", "#population-button", function(e) {
     $("#details-population").show();
 });
 
+$("#details").on("click", "#currency-button", function(e) {
+    getCurrencyDetails($("#currency-button").attr("data-country"));
+    $("#details-currency").show();
+    $("#details-gdp").show();
+});

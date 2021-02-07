@@ -23,8 +23,8 @@ function handleDetailsResponse(response) {
     $("#full-c-name").html(response.data.fullName);
     $("#c-population").html(formatPopulation(response.data.details.population) + ` <button id="population-button" data-country=${response.data.details.countryCode.toLowerCase()}>Show More</button>`);
     $("#c-area").html(formatArea(response.data.details.areaInSqKm));
-    $("#c-currency").html(response.data.details.currencyCode);
-    $("#c-neighbours").html(formatString(response, "neighbours") || "No borders on land.");
+    $("#c-currency").html(response.data.details.currencyCode + `<button id="currency-button" data-country=${response.data.details.countryCode.toLowerCase()}>Show More</button>`);
+    $("#c-neighbours").html(formatString(response, "neighbours") || "No land boundaries.");
     $("#c-continent").html(response.data.details.continentName);
     $("#c-capital").html(response.data.details.capital);
     $("#c-cities").html(formatString(response, "cities"));
