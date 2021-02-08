@@ -16,8 +16,6 @@ function getPopulationDetails(countryCode) {
 }
 
 function handlePopulationDetailsResponse(response) {
-    console.log(response);
-
     let dataAsCSV = "";
     response.data[1].forEach(function(year) {  
         let string = "";
@@ -33,7 +31,7 @@ function handlePopulationDetailsResponse(response) {
         plotter: barChartPlotter,
     };
 
-    const graph = new Dygraph(document.getElementById(`population-chart`), dataAsCSV, options)
+    const graph = new Dygraph(document.getElementById(`population-chart`), dataAsCSV, options);
 }
 
 export {getPopulationDetails};

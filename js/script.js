@@ -67,7 +67,7 @@ $("#details").on("click", "#population-button", function(e) {
 });
 
 $("#details").on("click", "#currency-button", function(e) {
-    getCurrencyDetails($("#currency-button").attr("data-country"));
+    getCurrencyDetails($("#currency-button").attr("data-country"), $("#currency-button").attr("data-currency"));
     $("#details-currency").show();
     $("#details-gdp").show();
 });
