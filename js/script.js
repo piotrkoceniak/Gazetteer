@@ -31,6 +31,9 @@ $("#weather-close-button").click(function() {
 $("#population-close-button").click(function() {
     $("#details-population").hide();
 });
+$("#currency-close-button").click(function() {
+    $("#details-currency").hide();
+});
 
 // search events
 $("#search").on("input", function (e) {
@@ -58,6 +61,7 @@ $("#mapid").on("click", "#details-button", function(e) {
     $("#details").show();
     $("#details-content").show();
     getCountryDetails($("#details-button").attr("data-country"));
+
 });
 
 $("#details").on("click", "#weather-button", function(e) {

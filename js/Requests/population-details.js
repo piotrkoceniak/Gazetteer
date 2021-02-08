@@ -16,6 +16,7 @@ function getPopulationDetails(countryCode) {
 }
 
 function handlePopulationDetailsResponse(response) {
+    $("#population-chart").empty();
     let dataAsCSV = "";
     response.data[1].forEach(function(year) {  
         let string = "";
