@@ -35,19 +35,14 @@ function getCurrencyDetails(countryCode, currencyCode) {
 }
 
 function handleCurrencyResponse(response, currency) {
-    console.log("currency");
-    console.log(response);
     let rows = `<tr><th>Currency Code</th><td>${currency}</td></tr>`;
     rows += `<tr><th>Currency Name</th><td>${response.data.currencyFullName}</td></tr>`;
     rows += `<tr><th>Current exchange rate (data updated every hour)</th><td>${response.data.rates[currency]} (base: US Dollar)</td></tr>`;
     let table = `<table>${rows}</table>`;
-    $("#details-currency-content").empty().append(table);
+    $("#details-currency-content").empty().append(table).append(`<p>Exchange rates by: <a href='https://openexchangerates.org/license' target='_blank'>openexchange.org</a></p>`);
 }
 
 function handleGDPResponse(response) {
-    console.log("gdp");
-    console.log(response);
-
     let dataAsCSV = "";
     response.data[1].forEach(function(year) {  
         let string = "";
@@ -64,7 +59,6 @@ function handleGDPResponse(response) {
     };
 
     const graph = new Dygraph(document.getElementById(`currency-gdp-content`), dataAsCSV, options);
-
 }
 
 

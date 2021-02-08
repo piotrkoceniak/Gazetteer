@@ -8,7 +8,11 @@ import {getCurrencyDetails} from "./Requests/currency-details.js";
 console.log("Script loaded");
 getCountries("");
 
-//$("#details, #details div").hide();
+$("#details").hide();
+$("#details-content").hide();
+$("#details-weather").hide();
+$("#details-population").hide();
+$("#details-currency").hide();
 
 $("#details").mouseleave(function(e) {
     $("#details-content").hide();
