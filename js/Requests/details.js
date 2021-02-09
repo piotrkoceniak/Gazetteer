@@ -1,4 +1,5 @@
 import {getWeather} from "./weather.js";
+import {getWiki} from "./wiki.js";
 
 function getCountryDetails(countryCode) {
     $.ajax({
@@ -31,6 +32,7 @@ function handleDetailsResponse(response) {
     
     
     getWeather(response.data.details.capital);
+    getWiki(response.data.details.countryName, response.data.details.capital);
 
     if($("#details-population").is(":visible")) {
         $("#population-button").trigger("click");
