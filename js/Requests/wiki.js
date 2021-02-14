@@ -17,7 +17,6 @@ function getWiki(country, capital) {
 }
 
 function handleWikiResponse(response) {
-    console.log(response);
     $("#c-wiki").empty();
     
     $("#c-wiki").append(`<li><p>${response.data.country.geonames[0].summary}</p><p><a href=${"http://" + response.data.country.geonames[0].wikipediaUrl} target="_blank">Wikipedia</a></p></li>`);

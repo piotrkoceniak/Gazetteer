@@ -18,7 +18,6 @@ $("#details").mouseleave(function(e) {
     $("#details-content").hide();
     $("#details").click(function() {
         $("#details-content").show();
-        $("#details-content").show();
     });
 });
 // closing buttons
@@ -36,16 +35,16 @@ $("#currency-close-button").click(function() {
 });
 
 // search events
-$("#search").on("input", function (e) {
+$("#search").on("change", function (e) {
     getCountries(e.target.value);
 });
-
+/*
 $("#search").on("keypress", function (e, submit) {
     if(e.which == 13 || submit) {
         getCountries($("#search").val());
     }
 });
-
+*/
 $("#search-icon").click(function() {
     $("#search").triggerHandler("keypress", true);
 });

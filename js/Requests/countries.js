@@ -1,4 +1,5 @@
 function getCountries(dataObj) {
+    console.log(dataObj);
     $.ajax({
         url: "php/countries.php",
         type: "POST",
@@ -15,22 +16,23 @@ function getCountries(dataObj) {
     });
 }
 
-function setOptionsInDatalist(namesObj) {
-    let optionsArray = [];
-    for(const key in namesObj) {
-        let htmlOption = `<option value='${namesObj[key]}'>${namesObj[key]}</option>`;
+function setOptionsInSelect(namesArr) {
+    let optionsArray = [`<option value=''>--- Select country ---</option>`,];
+    for(const key in namesArr) {
+        let htmlOption = `<option value='${namesArr[key]["code"]}'>${namesArr[key]["name"]}</option>`;
         optionsArray.push(htmlOption);
     }
     return optionsArray;
 }
 
 function handleCountryResponse(response) {
+    console.log(response);
         if(response.status.name == "ok") {
             showCountryOnMap(response.data.geometry);
             mymap.fitBounds(countryPolygon.getBounds());
-            $("#search").val(response.data.properties.name).blur();
+            //$("#search").val(response.data.properties.name).blur();
         } else {
-            $("#countries").empty().append(setOptionsInDatalist(response.data));
+            $("#search").empty().append(setOptionsInSelect(response.data));
         }
 }
 
