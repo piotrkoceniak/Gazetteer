@@ -9,7 +9,7 @@
 
 
 
-    $lastResponse = fopen("Data/currencies.json", "r+");
+    $lastResponse = fopen("Data/currencies.json", "r");
     $decodedLast = json_decode(fread($lastResponse, filesize("Data/currencies.json")), true);
     fclose($lastResponse);
 

@@ -1,5 +1,4 @@
 function getCountries(dataObj) {
-    console.log(dataObj);
     $.ajax({
         url: "php/countries.php",
         type: "POST",

@@ -1,1 +1,1 @@
-1612481445
+{"codes":[{"code":"GES","level":"1","type":"ISO3166-2"}],"adminCode1":"44","distance":0,"countryCode":"FR","countryName":"France","adminName1":"Grand Est"}

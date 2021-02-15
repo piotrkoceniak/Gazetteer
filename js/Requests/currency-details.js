@@ -43,22 +43,27 @@ function handleCurrencyResponse(response, currency) {
 }
 
 function handleGDPResponse(response) {
-    let dataAsCSV = "";
-    response.data[1].forEach(function(year) {  
-        let string = "";
-        if(year.value) {
-            string = `${year.date}, ${year.value}\n`;
-        }
-        dataAsCSV = string + dataAsCSV;
-    });
-    dataAsCSV = `Year, GDP in US Dollar\n` + dataAsCSV;
+    $("#currency-gdp-content").empty();
+    if(response.data[1] !== null) {
+        let dataAsCSV = "";
+        response.data[1].forEach(function(year) {  
+            let string = "";
+            if(year.value) {
+                string = `${year.date}, ${year.value}\n`;
+            }
+            dataAsCSV = string + dataAsCSV;
+        });
+        dataAsCSV = `Year, GDP in US Dollar\n` + dataAsCSV;
 
-    const options = {
-        labelsKMB: true,
-        plotter: barChartPlotter,
-    };
+        const options = {
+            labelsKMB: true,
+            plotter: barChartPlotter,
+        };
 
-    const graph = new Dygraph(document.getElementById(`currency-gdp-content`), dataAsCSV, options);
+        const graph = new Dygraph(document.getElementById(`currency-gdp-content`), dataAsCSV, options);
+    } else {
+        $("#currency-gdp-content").append("<p>GDP data unavailable.</p>");
+    }
 }
 
 

@@ -1,6 +1,4 @@
 <?php 
-include("Data/countriesCodes.php");
-include("Data/data.php");
 include("Functions/response.php");
 include("Functions/apiRequest.php");
 include("test.php");
@@ -9,10 +7,19 @@ $url = "http://api.geonames.org/countrySubdivisionJSON?lat=".$_REQUEST["lat"]."&
 
 $decode = sendRequest($url);
 
+$countryData = json_decode(file_get_contents("Data/countryBorders.geo.json"), true);
+
 if(array_key_exists("codes", $decode)) { 
-  $countryKey = array_search($decode["countryCode"], $codes);
-  if($countryKey) {  
-    $responseData = $list["features"][$countryKey];
+  $country = false;
+  
+  foreach ($countryData['features'] as $feature) {
+    if($feature["properties"]["iso_a2"] === $decode["countryCode"]) {
+      $country = $feature;
+    }
+  }
+  
+  if($country) {  
+    $responseData = $country;
     $responseData["geocodes"] = $decode;
     sendResponse("ok", $responseData); 
   } else {
