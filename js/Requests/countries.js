@@ -17,7 +17,7 @@ function getCountries(dataObj) {
 }
 
 function setOptionsInSelect(namesArr) {
-    let optionsArray = [`<option value=''>--- Select country ---</option>`,];
+    let optionsArray = [`<option value='' selected>--- Select country ---</option>`,];
     for(const key in namesArr) {
         let htmlOption = `<option value='${namesArr[key]["code"]}'>${namesArr[key]["name"]}</option>`;
         optionsArray.push(htmlOption);
@@ -26,11 +26,9 @@ function setOptionsInSelect(namesArr) {
 }
 
 function handleCountryResponse(response) {
-    console.log(response);
         if(response.status.name == "ok") {
             showCountryOnMap(response.data.geometry);
             mymap.fitBounds(countryPolygon.getBounds());
-            //$("#search").val(response.data.properties.name).blur();
         } else {
             $("#search").empty().append(setOptionsInSelect(response.data));
         }
