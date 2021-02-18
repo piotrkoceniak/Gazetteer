@@ -1,5 +1,5 @@
 // setting up map in #mapid
-var mymap = L.map('mapid').setView([45.00, 0.00], 2.5);
+var mymap = L.map('mapid', {zoomControl: false}).setView([45.00, 0.00], 2.5);
 
 // adding layer topographical
 var topoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
@@ -14,8 +14,9 @@ var mapnikMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 
 
 // adding control
-L.control.layers({"OpenTopoMap": topoMap, "OpenSteetMap": mapnikMap}).addTo(mymap);
-L.control.scale().addTo(mymap);
+L.control.layers({"OpenTopoMap": topoMap, "OpenSteetMap": mapnikMap}, null, {position: "bottomright"}).addTo(mymap);
+L.control.zoom({position: "bottomleft"}).addTo(mymap);
+L.control.scale({position: "bottomleft"}).addTo(mymap);
 
 // setting up popups - details
 var detailsPopup = L.popup();
