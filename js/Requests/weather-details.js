@@ -28,8 +28,8 @@ function setHistory(response) {
   $("#details-weather-history").append("<div id='temperature-history'></div>");
   $("#details-weather-history").append("<div id='rain-history'></div>");
 
-  chart('temperature-history', response.data.historical.hourly, ["temp", "feels_like"], ["Temperature (celsius)", "Feels like (celsius)"]);
-  chart('rain-history', response.data.historical.hourly, ["rain", "snow"], ["Rain (mm)", "Snow (mm)"]);
+  chart('temperature-history', response.data.historical.hourly, ["temp", "feels_like"], ["Temperature (celsius)", "Feels like (celsius)"], "Temperature and feels like in last 24 hours.");
+  chart('rain-history', response.data.historical.hourly, ["rain", "snow"], ["Rain (mm)", "Snow (mm)"], "Rainfall and snowfall in last 24 hours.");
 }
 
 function setForecast(response) {
@@ -150,7 +150,7 @@ function windDirection(degree) {
 
 function createHourChart(data) {
   if(data != undefined) {
-    chart("forecast-hour", data, ["precipitation"], ["Precipitation volume (mm)"]);
+    chart("forecast-hour", data, ["precipitation"], ["Precipitation volume (mm)"], "Precipitation in next 60 minutes.");
   } else {
     $("#forecast-hour").html("Forecast unavailable.");
   }
@@ -166,11 +166,11 @@ function create48Chart(data) {
     $("#forecast-2days").append("<div id='cloudiness-2days'></div>");
     $("#forecast-2days").append("<div id='rain-2days'></div>");
     
-    chart('temperature-2days', data,["temp", "feels_like"], ["Temperature (celsius)", "Feels like (celsius)"]);
-    chart('pressure-2days', data, ["pressure"], ["Pressure (hPa)"]);
-    chart('humidity-2days', data, ["humidity"], ["Humidity (%)"]);
-    chart('cloudiness-2days', data, ["clouds"], ["Cloudiness (%)"]);
-    chart('rain-2days', data, ["rain", "snow"], ["Rain (mm)", "Snow (mm)"]);
+    chart('temperature-2days', data,["temp", "feels_like"], ["Temperature (celsius)", "Feels like (celsius)"], "Temperature and feels like in next 48 hours.");
+    chart('pressure-2days', data, ["pressure"], ["Pressure (hPa)"], "Pressure in next 48 hours.");
+    chart('humidity-2days', data, ["humidity"], ["Humidity (%)"], "Humidity in next 48 hours.");
+    chart('cloudiness-2days', data, ["clouds"], ["Cloudiness (%)"], "Cloudiness in next 48 hours.");
+    chart('rain-2days', data, ["rain", "snow"], ["Rain (mm)", "Snow (mm)"], "Rainfall and snowfall in next 48 hours.");
     
   } else {
     $("#forecast-2days").html("Forecast unavailable.");
@@ -228,7 +228,7 @@ function createWeekDays(data, time_Offset) {
   });
 }
 
-function chart(id, data, keys, labels) {
+function chart(id, data, keys, labels, title) {
   let dataAsCSV = `Time`;
   labels.forEach(function (label) {
     dataAsCSV += ", " + label;
@@ -250,8 +250,14 @@ function chart(id, data, keys, labels) {
     
     dataAsCSV += string;
   });
+  let options = {
+    title: title,
+    xlabel: 'Time',
+    ylabel: labels[0],
+    y2label: labels[1] || null,
+  };
 
-  const graph = new Dygraph(document.getElementById(`${id}`), dataAsCSV);
+  const graph = new Dygraph(document.getElementById(`${id}`), dataAsCSV, options);
 }
 
 export {getWeatherDetails};

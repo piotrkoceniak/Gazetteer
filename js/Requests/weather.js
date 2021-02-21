@@ -21,6 +21,10 @@ function handleWeatherResponse(response) {
     let content = `<img src=${iconUrl} alt="Weather icon"> ${response.data.weather[0].description}, ${response.data.main.temp} &#8451; (data time: ${time.toLocaleTimeString()})`;
     content += `<button id="weather-button" data-city-lon=${response.data.coord.lon} data-city-lat=${response.data.coord.lat}>Show More</button>`;
     $("#c-current-weather").html(content);
+
+    if($("#details-weather").is(":visible")) {
+        $("#weather-button").trigger("click");
+    }
 }
 
 

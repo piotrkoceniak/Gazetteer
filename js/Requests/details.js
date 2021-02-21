@@ -40,9 +40,7 @@ function handleDetailsResponse(response) {
     if($("#details-currency").is(":visible")) {
         $("#currency-button").trigger("click");
     }
-    if($("#details-weather").is(":visible")) {
-        $("#weather-button").trigger("click");
-    }
+
 }
 
 function formatString(response, key) {
