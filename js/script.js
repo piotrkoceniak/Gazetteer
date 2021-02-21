@@ -8,22 +8,26 @@ import {getCurrencyDetails} from "./Requests/currency-details.js";
 console.log("Script loaded");
 getCountries("");
 
-$("#details").hide();
-$("#details-content").hide();
+//$("#details").hide();
+//$("#details-content").hide();
 $("#details-weather").hide();
 $("#details-population").hide();
 $("#details-currency").hide();
 
+/*
 $("#details").mouseleave(function(e) {
     $("#details-content").hide();
     $("#details").click(function() {
         $("#details-content").show();
     });
 });
+
+
 // closing buttons
 $("#details-close-button").click(function() {
     $("#details").hide();
 });
+*/
 $("#weather-close-button").click(function() {
     $("#details-weather").hide();
 });
@@ -33,6 +37,7 @@ $("#population-close-button").click(function() {
 $("#currency-close-button").click(function() {
     $("#details-currency").hide();
 });
+
 
 // search events
 $("#search").on("change", function (e) {
@@ -57,11 +62,20 @@ mymap.on("click", (e) => {
 
 // opening buttons
 $("#mapid").on("click", "#details-button", function(e) {
-    $("#details").show();
-    $("#details-content").show();
+    console.log(e);
+    //$("#details").show();
+    //$("#details-content").show();
+    getCountryDetails($("#details-button").attr("data-country"));
+    $('#details-modal').modal({backdrop: 'static', show: true});
+});
+
+/*$('#details-modal').on('show.bs.modal', function (e) {
+    console.log('modal opened - requesting details');
+    //$("#details").show();
+    //$("#details-content").show();
     getCountryDetails($("#details-button").attr("data-country"));
 
-});
+});*/
 
 $("#details").on("click", "#weather-button", function(e) {
     getWeatherDetails($("#weather-button").attr("data-city-lon"), $("#weather-button").attr("data-city-lat"));

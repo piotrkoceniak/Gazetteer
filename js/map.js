@@ -58,7 +58,7 @@ function setPopupContent(countryName, locationName, countryCode) {
 			<td>${locationName}</td>
 		</tr></table>`;
 	let image = countryCode ? `<img id="popup-country-flag" src="https://www.countryflags.io/${countryCode.toLowerCase()}/flat/64.png">` : '<img id="popup-country-flag" src="">';
-	let detailsButton = `<button id="details-button" type="button" class="btn btn-primary" data-toggle="modal" data-target="#details-modal" onclick="" data-country=${countryCode}>Details</button>`;
+	let detailsButton = `<button id="details-button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#details-modal" data-country=${countryCode}>Details</button>`;
 	
 	detailsPopupContent = `<div id='popup-content'>${table}${image}${detailsButton}</div>`;
 	detailsPopup.setContent(detailsPopupContent);
