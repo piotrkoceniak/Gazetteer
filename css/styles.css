@@ -5,6 +5,10 @@
     z-index: 1;
 }
 
+#forecast-hour, #temperature-2days, #pressure-2days, #humidity-2days, #cloudiness-2days, #rain-2days, #temperature-history, #rain-history {
+   max-width: 100%;
+}
+
 #mapid { 
     height: 100vh;
     width: 100vw;
@@ -15,3 +19,4 @@ table, tr, th, td {
     border: 1px solid black !important;
     border-collapse: collapse !important;
 }
+
