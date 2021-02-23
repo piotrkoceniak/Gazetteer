@@ -5,6 +5,19 @@ import {getWeatherDetails} from "./Requests/weather-details.js";
 import {getPopulationDetails} from "./Requests/population-details.js";
 import {getCurrencyDetails} from "./Requests/currency-details.js";
 
+let location = window.navigator.geolocation;
+
+location.getCurrentPosition(
+    (pos) => {
+        let latitude = Number.parseFloat(pos.coords.latitude).toFixed(2);
+        let longitude = Number.parseFloat(pos.coords.longitude).toFixed(2);
+        getCountryFromGeocodes({lat: latitude, lng: longitude});
+        mymap.setView([latitude, longitude], 10.0);
+    }
+);
+
+
+
 console.log("Script loaded");
 getCountries("");
 
