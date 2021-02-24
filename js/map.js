@@ -52,7 +52,7 @@ function removeCountry() {
 
 // setting popup content
 function setPopupContent(countryName, locationName, countryCode) {
-	let table = `<table id="popup-table">
+	let table = `<table id="popup-table" class="table table-striped table-hover">
 		<tr>
 			<th>Country:</th>
 			<td>${countryName}</td>
@@ -64,6 +64,6 @@ function setPopupContent(countryName, locationName, countryCode) {
 	let image = countryCode ? `<img id="popup-country-flag" src="https://www.countryflags.io/${countryCode.toLowerCase()}/flat/64.png">` : '<img id="popup-country-flag" src="">';
 	let detailsButton = `<button id="details-button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#details-modal" data-country=${countryCode}>Details</button>`;
 	
-	detailsPopupContent = `<div id='popup-content'>${table}${image}${detailsButton}</div>`;
+	detailsPopupContent = `<div id='popup-content'>${table}${image} ${detailsButton}</div>`;
 	detailsPopup.setContent(detailsPopupContent);
 }

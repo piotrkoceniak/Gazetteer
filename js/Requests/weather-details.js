@@ -86,7 +86,7 @@ function setCurrent(response) {
     rows += `<tr><th>Average visibility</th><td>${response.data.forecast.current.visibility}&nbsp;m</td></tr>`;
     rows += `<tr><th>Ultraviolet radiation index</th><td>${response.data.forecast.current.uvi}</td></tr>`;
     
-    let table = `<table>${rows}</table>`;
+    let table = `<table class="table table-striped table-hover">${rows}</table>`;
     div.append(table);
     div.show();
 }
@@ -223,7 +223,7 @@ function createWeekDays(data, time_Offset) {
     rows += `<tr><th>Ultraviolet radiation index</th><td>${day.uvi}</td></tr>`;
     
     let dataTime = new Date(day.dt * 1000);
-    let table = `<div id="forecast-week-${index}"><h5>${weekday[dataTime.getDay()]}</h5><table>${rows}</table></div>`;
+    let table = `<div id="forecast-week-${index}"><h5>${weekday[dataTime.getDay()]}</h5><table class="table table-striped table-hover">${rows}</table></div>`;
     div.append(table);
   });
 }

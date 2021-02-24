@@ -38,7 +38,7 @@ function handleCurrencyResponse(response, currency) {
     let rows = `<tr><th>Currency Code</th><td>${currency}</td></tr>`;
     rows += `<tr><th>Currency Name</th><td>${response.data.currencyFullName}</td></tr>`;
     rows += `<tr><th>Current exchange rate (data updated every hour)</th><td>${response.data.rates[currency]} (price for 1 US Dollar)</td></tr>`;
-    let table = `<table>${rows}</table>`;
+    let table = `<table class="table table-striped table-hover">${rows}</table>`;
     $("#details-currency-content").empty().append(table).append(`<p>Exchange rates by: <a href='https://openexchangerates.org/license' target='_blank'>openexchange.org</a></p>`);
 }
 
