@@ -25,8 +25,8 @@ function handleWeatherDetailsResponse(response) {
 }
 
 function setHistory(response) {
-  $("#details-weather-history").append("<div id='temperature-history'></div>");
-  $("#details-weather-history").append("<div id='rain-history'></div>");
+  $("#details-weather-history").append("<div id='temperature-history' class='background-5'></div>");
+  $("#details-weather-history").append("<div id='rain-history' class='background-5'></div>");
 
   chart('temperature-history', response.data.historical.hourly, ["temp", "feels_like"], ["Temperature (celsius)", "Feels like (celsius)"], "Temperature and feels like in last 24 hours.");
   chart('rain-history', response.data.historical.hourly, ["rain", "snow"], ["Rain (mm)", "Snow (mm)"], "Rainfall and snowfall in last 24 hours.");
@@ -35,11 +35,11 @@ function setHistory(response) {
 function setForecast(response) {
   $("#details-weather-forecast").empty();
   $("#details-weather-forecast").append("<h4>Next hour</h4>");
-  $("#details-weather-forecast").append("<div id='forecast-hour'></div>");
+  $("#details-weather-forecast").append("<div id='forecast-hour' class='background-5'></div>");
   $("#details-weather-forecast").append("<h4>Next 48 hours</h4>");
-  $("#details-weather-forecast").append("<div id='forecast-2days'></div>");
+  $("#details-weather-forecast").append("<div id='forecast-2days' class='background-5'></div>");
   $("#details-weather-forecast").append("<h4>Next week</h4>");
-  $("#details-weather-forecast").append("<div id='forecast-week'></div>");
+  $("#details-weather-forecast").append("<div id='forecast-week' class='background-5'></div>");
 
   createHourChart(response.data.forecast.minutely);
   create48Chart(response.data.forecast.hourly);
@@ -223,7 +223,7 @@ function createWeekDays(data, time_Offset) {
     rows += `<tr><th>Ultraviolet radiation index</th><td>${day.uvi}</td></tr>`;
     
     let dataTime = new Date(day.dt * 1000);
-    let table = `<div id="forecast-week-${index}"><h5>${weekday[dataTime.getDay()]}</h5><table class="table table-striped table-hover">${rows}</table></div>`;
+    let table = `<div id="forecast-week-${index}" class='background-5'><h5>${weekday[dataTime.getDay()]}</h5><table class="table table-striped table-hover">${rows}</table></div>`;
     div.append(table);
   });
 }
