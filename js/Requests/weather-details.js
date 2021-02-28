@@ -224,7 +224,7 @@ function createWeekDays(data, time_Offset) {
     rows += `<tr><th>Ultraviolet radiation index</th><td>${day.uvi}</td></tr>`;
     
     let dataTime = new Date(day.dt * 1000);
-    let table = `<div id="forecast-week-${index}" class='background-5 padding-left'><h5>${weekday[dataTime.getDay()]}</h5><table class="table table-striped table-hover background-6">${rows}</table></div>`;
+    let table = `<div id="forecast-week-${index}" class='background-5 padding-left no-margin-top-bottom'><h5>${weekday[dataTime.getDay()]}</h5><table class="table table-striped table-hover background-6">${rows}</table></div>`;
     div.append(table);
   });
 }

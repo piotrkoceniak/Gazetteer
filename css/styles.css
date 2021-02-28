@@ -70,4 +70,12 @@ table {
     margin-top: 3vh;
     margin-bottom: 1vh;
 }
+.no-margin-top-bottom {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+* {
+    border: 1px solid red;
+}
 
