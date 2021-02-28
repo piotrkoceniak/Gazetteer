@@ -5,7 +5,7 @@
     z-index: 1;
 }
 
-#forecast-hour, #temperature-2days, #pressure-2days, #humidity-2days, #cloudiness-2days, #rain-2days, #temperature-history, #rain-history, #population-chart, #currency-gdp-content {
+.center-chart {
    max-width: 100%;
    margin: 0px auto;
 }
@@ -58,6 +58,16 @@ table {
     background-color: #faaf46;
 }
 
-.padding-left {
-    padding-left: 5vw;
+.margin-left {
+    margin-left: 2vw;
 }
+
+.padding-left {
+    padding-left: 2vw;
+}
+
+.margin-top-bottom {
+    margin-top: 3vh;
+    margin-bottom: 1vh;
+}
+

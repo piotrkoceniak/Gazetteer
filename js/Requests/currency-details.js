@@ -43,7 +43,7 @@ function handleCurrencyResponse(response, currency) {
 }
 
 function handleGDPResponse(response) {
-    $("#currency-gdp-content").empty();
+    $("#currency-gdp-content").empty().append("<div id='gdp-chart' class='center-chart'></div>");
     if(response.data[1] !== null) {
         let dataAsCSV = "";
         response.data[1].forEach(function(year) {  
@@ -60,7 +60,7 @@ function handleGDPResponse(response) {
             plotter: barChartPlotter,
         };
 
-        const graph = new Dygraph(document.getElementById(`currency-gdp-content`), dataAsCSV, options);
+        const graph = new Dygraph(document.getElementById(`gdp-chart`), dataAsCSV, options);
     } else {
         $("#currency-gdp-content").append("<p>GDP data unavailable.</p>");
     }

@@ -25,8 +25,8 @@ function handleWeatherDetailsResponse(response) {
 }
 
 function setHistory(response) {
-  $("#details-weather-history").append("<div id='temperature-history' class='background-5'></div>");
-  $("#details-weather-history").append("<div id='rain-history' class='background-5'></div>");
+  $("#details-weather-history").append("<div class='margin-top-bottom'><div id='temperature-history' class='center-chart'></div></div>");
+  $("#details-weather-history").append("<div class='margin-top-bottom'><div id='rain-history' class='center-chart'></div></div>");
 
   chart('temperature-history', response.data.historical.hourly, ["temp", "feels_like"], ["Temperature (celsius)", "Feels like (celsius)"], "Temperature and feels like in last 24 hours.");
   chart('rain-history', response.data.historical.hourly, ["rain", "snow"], ["Rain (mm)", "Snow (mm)"], "Rainfall and snowfall in last 24 hours.");
@@ -35,11 +35,11 @@ function setHistory(response) {
 function setForecast(response) {
   $("#details-weather-forecast").empty();
   $("#details-weather-forecast").append("<h4>Next hour</h4>");
-  $("#details-weather-forecast").append("<div id='forecast-hour' class='background-5'></div>");
+  $("#details-weather-forecast").append("<div id='forecast-hour' class='background-5 margin-left margin-top-bottom'></div>");
   $("#details-weather-forecast").append("<h4>Next 48 hours</h4>");
-  $("#details-weather-forecast").append("<div id='forecast-2days' class='background-5'></div>");
+  $("#details-weather-forecast").append("<div id='forecast-2days' class='background-5 margin-left margin-top-bottom'></div>");
   $("#details-weather-forecast").append("<h4>Next week</h4>");
-  $("#details-weather-forecast").append("<div id='forecast-week' class='background-5'></div>");
+  $("#details-weather-forecast").append("<div id='forecast-week' class='margin-left margin-top-bottom'></div>");
 
   createHourChart(response.data.forecast.minutely);
   create48Chart(response.data.forecast.hourly);
@@ -150,7 +150,8 @@ function windDirection(degree) {
 
 function createHourChart(data) {
   if(data != undefined) {
-    chart("forecast-hour", data, ["precipitation"], ["Precipitation volume (mm)"], "Precipitation in next 60 minutes.");
+    $("#forecast-hour").empty().append("<div id='hour-chart' class='center-chart'><div>");
+    chart("hour-chart", data, ["precipitation"], ["Precipitation volume (mm)"], "Precipitation in next 60 minutes.");
   } else {
     $("#forecast-hour").html("Forecast unavailable.");
   }
@@ -160,11 +161,11 @@ function create48Chart(data) {
   if(data != undefined) {
     //`Time, Temperature (celsius), Feels like (celsius), Pressure (hPa), Humidity (%), Cloudiness (%), Rain/Snow (mm)\n`;
     $("#forecast-2days").empty();
-    $("#forecast-2days").append("<div id='temperature-2days'></div>");
-    $("#forecast-2days").append("<div id='pressure-2days'></div>");
-    $("#forecast-2days").append("<div id='humidity-2days'></div>");
-    $("#forecast-2days").append("<div id='cloudiness-2days'></div>");
-    $("#forecast-2days").append("<div id='rain-2days'></div>");
+    $("#forecast-2days").append("<div id='temperature-2days' class='center-chart'></div>");
+    $("#forecast-2days").append("<div id='pressure-2days' class='center-chart'></div>");
+    $("#forecast-2days").append("<div id='humidity-2days' class='center-chart'></div>");
+    $("#forecast-2days").append("<div id='cloudiness-2days' class='center-chart'></div>");
+    $("#forecast-2days").append("<div id='rain-2days' class='center-chart'></div>");
     
     chart('temperature-2days', data,["temp", "feels_like"], ["Temperature (celsius)", "Feels like (celsius)"], "Temperature and feels like in next 48 hours.");
     chart('pressure-2days', data, ["pressure"], ["Pressure (hPa)"], "Pressure in next 48 hours.");
@@ -223,7 +224,7 @@ function createWeekDays(data, time_Offset) {
     rows += `<tr><th>Ultraviolet radiation index</th><td>${day.uvi}</td></tr>`;
     
     let dataTime = new Date(day.dt * 1000);
-    let table = `<div id="forecast-week-${index}" class='background-5'><h5>${weekday[dataTime.getDay()]}</h5><table class="table table-striped table-hover">${rows}</table></div>`;
+    let table = `<div id="forecast-week-${index}" class='background-5 padding-left'><h5>${weekday[dataTime.getDay()]}</h5><table class="table table-striped table-hover background-6">${rows}</table></div>`;
     div.append(table);
   });
 }
