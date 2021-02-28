@@ -8,7 +8,7 @@ import {getCurrencyDetails} from "./Requests/currency-details.js";
 let location = window.navigator.geolocation;
 
 location.getCurrentPosition(
-    (pos) => {
+    function(pos) {
         let latitude = Number.parseFloat(pos.coords.latitude).toFixed(2);
         let longitude = Number.parseFloat(pos.coords.longitude).toFixed(2);
         getCountryFromGeocodes({lat: latitude, lng: longitude});
