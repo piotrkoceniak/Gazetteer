@@ -20,6 +20,17 @@ function getCountryDetails(countryCode) {
 
 function handleDetailsResponse(response) {
     console.log(response);
+    
+    markers.clearLayers();
+    response.data.cities.forEach(city => {
+        const marker = L.marker([city.lat, city.lng]);
+        let populationString = formatPopulation(city.population.toString());
+
+        marker.bindTooltip(`City: ${city.name}<br/>Population: ${populationString}`);
+        markers.addLayer(marker);
+    });
+    mymap.addLayer(markers);
+
     $("#c-name").html("Details - " + response.data.details.countryName);
     $("#full-c-name").html(response.data.fullName);
     $("#c-population").html(formatPopulation(response.data.details.population) + ` <a id="population-button" class="btn btn-info btn-sm" role="button" href="#details-population" data-country=${response.data.details.countryCode.toLowerCase()} >Show More</a>`);
@@ -46,9 +57,20 @@ function handleDetailsResponse(response) {
 
 function formatString(response, key) {
     let string = "";
-    response.data[key].forEach(element => {
-        string += string ? (", " + element.name) : element.name;
-    });
+    if(key == "cities") {
+        let i = 0;
+        response.data[key].forEach(element => {
+            if(i < 5) {
+                string += string ? (", " + element.name) : element.name;
+            }
+            i++;
+        });
+    } else {
+        response.data[key].forEach(element => {
+            string += string ? (", " + element.name) : element.name;
+        });
+    }
+    
     return string;
 }
 

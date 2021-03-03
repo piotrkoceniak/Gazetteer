@@ -67,3 +67,9 @@ function setPopupContent(countryName, locationName, countryCode) {
 	detailsPopupContent = `<div id='popup-content'>${table}${image} ${detailsButton}</div>`;
 	detailsPopup.setContent(detailsPopupContent);
 }
+
+var markers = L.markerClusterGroup({
+	showCoverageOnHover: false,
+	zoomToBoundsOnClick: false
+});
+
