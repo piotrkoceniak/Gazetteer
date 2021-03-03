@@ -17,6 +17,7 @@ function getCountryFromGeocodes(lonlatObj) {
 }
 
 function handleGeoResponse(response) {
+    console.log(response);
         if(response.status.name == "ok") {
             showCountryOnMap(response.data.geometry);
             $(`#search option[attr="selected"]`).prop("selected", false);

@@ -19,6 +19,7 @@ function getCountryDetails(countryCode) {
 }
 
 function handleDetailsResponse(response) {
+    console.log(response);
     $("#c-name").html("Details - " + response.data.details.countryName);
     $("#full-c-name").html(response.data.fullName);
     $("#c-population").html(formatPopulation(response.data.details.population) + ` <a id="population-button" class="btn btn-info btn-sm" role="button" href="#details-population" data-country=${response.data.details.countryCode.toLowerCase()} >Show More</a>`);
