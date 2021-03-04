@@ -1,5 +1,6 @@
 import {getWeather} from "./weather.js";
 import {getWiki} from "./wiki.js";
+import {getNews} from "./news.js";
 
 function getCountryDetails(countryCode) {
     $.ajax({
@@ -19,7 +20,6 @@ function getCountryDetails(countryCode) {
 }
 
 function handleDetailsResponse(response) {
-    
     $("#c-name").html("Details - " + response.data.details.countryName);
     $("#full-c-name").html(response.data.fullName);
     $("#c-population").html(formatPopulation(response.data.details.population) + ` <a id="population-button" class="btn btn-info btn-sm" role="button" href="#details-population" data-country=${response.data.details.countryCode.toLowerCase()} >Show More</a>`);
@@ -34,6 +34,7 @@ function handleDetailsResponse(response) {
     
     getWeather(response.data.details.capital);
     getWiki(response.data.details.countryName, response.data.details.capital);
+    getNews(response.data.details.countryName);
 
     if($("#details-population").is(":visible")) {
         $("#population-button").trigger("click");
