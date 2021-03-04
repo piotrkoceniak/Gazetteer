@@ -1,3 +1,5 @@
+import {setCityMarkers} from "./cities.js";
+
 function getCountryFromGeocodes(lonlatObj) {
     $.ajax({
         url: "./php/geocodes.php",
@@ -19,10 +21,15 @@ function getCountryFromGeocodes(lonlatObj) {
 function handleGeoResponse(response) {
     console.log(response);
         if(response.status.name == "ok") {
-            showCountryOnMap(response.data.geometry);
-            $(`#search option[attr="selected"]`).prop("selected", false);
-            $(`#search option[value=${response.data["properties"]["iso_a2"]}`).prop("selected", true);
-            setPopupContent(response.data.properties.name, response.data.geocodes.adminName1, response.data.geocodes.countryCode);
+            if($(`#search option[attr="selected"]`).val() === response.data["properties"]["iso_a2"]) {
+                setPopupContent(response.data.properties.name, response.data.geocodes.adminName1, response.data.geocodes.countryCode);
+            } else {
+                showCountryOnMap(response.data.geometry);
+                $(`#search option[attr="selected"]`).prop("selected", false);
+                $(`#search option[value=${response.data["properties"]["iso_a2"]}`).prop("selected", true);
+                setPopupContent(response.data.properties.name, response.data.geocodes.adminName1, response.data.geocodes.countryCode);
+                setCityMarkers(response.data.geocodes.countryCode);
+            }
         } else {
             removeCountry();
             setPopupContent("", "Unavailable", false);

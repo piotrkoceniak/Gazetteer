@@ -16,7 +16,7 @@
     $neighbours = sendRequest($neighboursUrl);
 
     // getting biggest cities
-    $citiesUrl = "http://api.geonames.org/searchJSON?q=&country=".$_REQUEST["country"]."&cities=cities15000&maxRows=100&orderby=population&username=pkoceniak";
+    $citiesUrl = "http://api.geonames.org/searchJSON?q=&country=".$_REQUEST["country"]."&cities=cities15000&maxRows=5&orderby=population&username=pkoceniak";
 
     $cities = sendRequest($citiesUrl);
 
