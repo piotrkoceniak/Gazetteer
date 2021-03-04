@@ -19,7 +19,6 @@ function getCountryFromGeocodes(lonlatObj) {
 }
 
 function handleGeoResponse(response) {
-    console.log(response);
         if(response.status.name == "ok") {
             if($(`#search option[attr="selected"]`).val() === response.data["properties"]["iso_a2"]) {
                 setPopupContent(response.data.properties.name, response.data.geocodes.adminName1, response.data.geocodes.countryCode);

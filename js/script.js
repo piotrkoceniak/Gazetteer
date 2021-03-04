@@ -4,6 +4,7 @@ import {getCountryDetails} from "./Requests/details.js";
 import {getWeatherDetails} from "./Requests/weather-details.js";
 import {getPopulationDetails} from "./Requests/population-details.js";
 import {getCurrencyDetails} from "./Requests/currency-details.js";
+import {setPOIsMarkers} from "./Requests/POIs.js";
 
 let location = window.navigator.geolocation;
 
@@ -16,10 +17,18 @@ location.getCurrentPosition(
     }
 );
 
-
-
 console.log("Script loaded");
 getCountries("");
+
+mymap.on('zoomstart', function() {
+    let zoomLevel = mymap.getZoom();
+    if(zoomLevel >= 15) {
+        let latLng = mymap.getCenter();
+        setPOIsMarkers(latLng);
+    } else {
+        POIsMarkers.clearLayers();
+    }
+});
 
 $("#details-weather").hide();
 $("#details-population").hide();

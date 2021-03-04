@@ -16,15 +16,15 @@ function setCityMarkers(countryCode) {
 }
 
 function handleCitiesResponse(response) {
-    markers.clearLayers();
+    cityMarkers.clearLayers();
     response.data.cities.forEach(city => {
         const marker = L.marker([city.lat, city.lng]);
         let populationString = formatPopulation(city.population.toString());
 
         marker.bindTooltip(`City: ${city.name}<br/>Population: ${populationString}`);
-        markers.addLayer(marker);
+        cityMarkers.addLayer(marker);
     });
-    mymap.addLayer(markers);
+    mymap.addLayer(cityMarkers);
 }
 
 function formatPopulation(population) {

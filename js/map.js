@@ -11,7 +11,7 @@ var mapnikMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 	maxZoom: 19,
 	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(mymap);
-
+/*
 var stadiaMap = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png', {
 	maxZoom: 20,
 	attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
@@ -21,10 +21,10 @@ var stadiaMap2 = L.tileLayer('https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x
 	maxZoom: 20,
 	attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
 });
-
+*/
 
 // adding control
-L.control.layers({"OpenTopoMap": topoMap, "OpenSteetMap": mapnikMap, "Stadia - smooth": stadiaMap, "Stadia - outdoors": stadiaMap2}, null, {position: "bottomright"}).addTo(mymap);
+L.control.layers({"OpenTopoMap": topoMap, "OpenSteetMap": mapnikMap, /*"Stadia - smooth": stadiaMap, "Stadia - outdoors": stadiaMap2*/}, null, {position: "bottomright"}).addTo(mymap);
 L.control.zoom({position: "bottomleft"}).addTo(mymap);
 L.control.scale({position: "bottomleft"}).addTo(mymap);
 
@@ -68,7 +68,12 @@ function setPopupContent(countryName, locationName, countryCode) {
 	detailsPopup.setContent(detailsPopupContent);
 }
 
-var markers = L.markerClusterGroup({
+var cityMarkers = L.markerClusterGroup({
+	showCoverageOnHover: false,
+	zoomToBoundsOnClick: false
+});
+
+var POIsMarkers = L.markerClusterGroup({
 	showCoverageOnHover: false,
 	zoomToBoundsOnClick: false
 });

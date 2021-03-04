@@ -19,7 +19,6 @@ function getCountryDetails(countryCode) {
 }
 
 function handleDetailsResponse(response) {
-    console.log(response);
     
     $("#c-name").html("Details - " + response.data.details.countryName);
     $("#full-c-name").html(response.data.fullName);
