@@ -1,6 +1,7 @@
 import {getWeather} from "./weather.js";
 import {getWiki} from "./wiki.js";
 import {getNews} from "./news.js";
+import {getPictures} from "./pictures.js";
 
 function getCountryDetails(countryCode) {
     $.ajax({
@@ -34,6 +35,7 @@ function handleDetailsResponse(response) {
     
     getWeather(response.data.details.capital);
     getWiki(response.data.details.countryName, response.data.details.capital);
+    getPictures(response.data.details.countryName);
     getNews(response.data.details.countryName);
 
     if($("#details-population").is(":visible")) {
