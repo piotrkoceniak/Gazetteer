@@ -24,7 +24,7 @@ function handleNewsResponse(response) {
     let index = 0;
 
     response.data.articles.forEach(article => {
-        let indicator = `<button type="button" class="mx-1" data-bs-target="#news-carousel" data-bs-slide-to="${index}" aria-label="News ${index}" ${index === 0 ? 'class="active"' : ''}></button>`;
+        let indicator = `<button type="button" class="mx-1 ${index === 0 ? 'active' : ''}" data-bs-target="#news-carousel" data-bs-slide-to="${index}" aria-label="News ${index}"></button>`;
     
         indicators += indicator;
         let imageUrl = article.urlToImage === null ? "./images/news-no-image.svg" : article.urlToImage;

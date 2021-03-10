@@ -18,16 +18,12 @@ function getPictures(countryName) {
 }
 
 function handlePicturesResponse(response) {
-    console.log("1111");
-    $("#pictures-indicators").empty();
-    $("#pictures-carousel-inner").empty();
     let indicators = "";
     let carouselItems = "";
     let index = 0;
 
     response.data.photos.photo.forEach(photo => {
-        let indicator = `<button type="button" class="mx-1" data-bs-target="#pictures-carousel" data-bs-slide-to="${index}" aria-label="Country related picture ${index}" ${index === 0 ? 'class="active"' : ''}></button>`;
-    
+        let indicator = `<button type="button" class="mx-1 ${index === 0 ? 'active' : ''}" data-bs-target="#pictures-carousel" data-bs-slide-to="${index}" aria-label="Country related picture ${index}"></button>`;
         indicators += indicator;
 
         let imageUrl = `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_z.jpg`;
@@ -39,7 +35,10 @@ function handlePicturesResponse(response) {
         carouselItems += item;
         index++;
     });
+    $("#pictures-indicators").empty();
     $("#pictures-indicators").html(indicators);
+
+    $("#pictures-carousel-inner").empty();
     $("#pictures-carousel-inner").html(carouselItems);
 
     index = 0;
