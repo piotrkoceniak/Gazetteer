@@ -18,6 +18,7 @@ function getPictures(countryName) {
 }
 
 function handlePicturesResponse(response) {
+    console.log("1111");
     $("#pictures-indicators").empty();
     $("#pictures-carousel-inner").empty();
     let indicators = "";
