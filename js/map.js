@@ -32,26 +32,28 @@ L.control.scale({position: "bottomleft"}).addTo(mymap);
 var detailsPopup = L.popup();
 var detailsPopupContent = "<div id='popup-content'>Unable to fetch data.</div>";
 
-// setting up capital markers
-var capitalMarker = L.marker(null, {title: "Capital city."});
-function showCapitalOnMap(coords) {
-	capitalMarker.setLatLng(coords).addTo(mymap);
-};
-
 // adding country polygon to map
 var countryPolygon = L.geoJSON(null, {style: {color: 'black', weight: 1, opacity: 0.3, fillOpacity: 0.2}});
-function showCountryOnMap(points) {
+// binding popup to geojson layer
+countryPolygon.bindPopup(detailsPopup);
+function showCountryOnMap(points, latlngObj = null) {
 	countryPolygon.clearLayers().addData(points).addTo(mymap);
+	if(latlngObj === null) {
+		countryPolygon.openPopup();
+	} else {
+		countryPolygon.openPopup(latlngObj);
+	}
 }
 
-// removing marker and polygon
+// removing popup and polygon
 function removeCountry() {
-	capitalMarker.remove();
 	countryPolygon.clearLayers();
+	countryPolygon.closePopup();
 }
 
 // setting popup content
 function setPopupContent(countryName, locationName, countryCode) {
+	detailsPopup.setContent("");
 	let table = `<table id="popup-table" class="table table-striped table-hover">
 		<tr>
 			<th>Country:</th>

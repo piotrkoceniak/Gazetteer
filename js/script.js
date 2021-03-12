@@ -58,7 +58,9 @@ $("#search").on("change", function (e) {
 // opening popup on click - getting country and region from geocodes and setting it up on map and pop up
 mymap.on("click", (e) => {
     getCountryFromGeocodes(e.latlng);
-	detailsPopup.setLatLng(e.latlng).openOn(mymap);
+});
+countryPolygon.on("click", (e) => {
+    getCountryFromGeocodes(e.latlng);
 });
 
 // opening modal - getting country details and setting data in modal

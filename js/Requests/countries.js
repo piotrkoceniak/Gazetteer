@@ -28,12 +28,9 @@ function setOptionsInSelect(namesArr) {
 
 function handleCountryResponse(response) {
         if(response.status.name == "ok") {
+            setPopupContent(response.data.properties.name, "Click on map for info.", response.data.properties.iso_a2);
             showCountryOnMap(response.data.geometry);
             mymap.fitBounds(countryPolygon.getBounds());
-
-            let latlng = mymap.getCenter();
-            getCountryFromGeocodes(latlng);
-            detailsPopup.setLatLng(latlng).openOn(mymap);
         } else {
             $("#search").empty().append(setOptionsInSelect(response.data));
         }
