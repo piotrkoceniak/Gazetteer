@@ -9,7 +9,6 @@
     $pois = sendRequest($poisUrl);
 
     // response
-    $responseData["poi"] = $pois["poi"];
-    sendResponse("ok", $responseData);
+    sendResponse("ok", $pois);
 
 ?>

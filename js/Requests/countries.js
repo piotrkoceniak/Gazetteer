@@ -1,3 +1,5 @@
+import {getCountryFromGeocodes} from './geocodes.js';
+
 function getCountries(dataObj) {
     $.ajax({
         url: "php/countries.php",
@@ -28,6 +30,10 @@ function handleCountryResponse(response) {
         if(response.status.name == "ok") {
             showCountryOnMap(response.data.geometry);
             mymap.fitBounds(countryPolygon.getBounds());
+
+            let latlng = mymap.getCenter();
+            getCountryFromGeocodes(latlng);
+            detailsPopup.setLatLng(latlng).openOn(mymap);
         } else {
             $("#search").empty().append(setOptionsInSelect(response.data));
         }
