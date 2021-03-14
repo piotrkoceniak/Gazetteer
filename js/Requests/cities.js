@@ -18,10 +18,16 @@ function setCityMarkers(countryCode) {
 function handleCitiesResponse(response) {
     cityMarkers.clearLayers();
     response.data.cities.forEach(city => {
-        const marker = L.marker([city.lat, city.lng]);
+        var cityMarker = L.icon({
+            iconUrl: './images/icons/building.svg',
+            iconAnchor: [0, 8],
+            tooltipAnchor: [24, 4]
+          });
+
+        const marker = L.marker([city.lat, city.lng], {icon: cityMarker});
         let populationString = formatPopulation(city.population.toString());
 
-        marker.bindTooltip(`City: ${city.name}<br/>Population: ${populationString}`);
+        marker.bindTooltip(`${city.population >= 100000 ? 'City' : 'Town'}: ${city.name}<br/>Population: ${populationString}`);
         cityMarkers.addLayer(marker);
     });
     mymap.addLayer(cityMarkers);

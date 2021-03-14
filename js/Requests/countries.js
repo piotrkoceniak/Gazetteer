@@ -1,4 +1,4 @@
-import {getCountryFromGeocodes} from './geocodes.js';
+import {setCityMarkers} from "./cities.js";
 
 function getCountries(dataObj) {
     $.ajax({
@@ -31,6 +31,7 @@ function handleCountryResponse(response) {
             setPopupContent(response.data.properties.name, "Click on map for info.", response.data.properties.iso_a2);
             showCountryOnMap(response.data.geometry);
             mymap.fitBounds(countryPolygon.getBounds());
+            setCityMarkers(response.data.properties.iso_a2);
         } else {
             $("#search").empty().append(setOptionsInSelect(response.data));
         }
