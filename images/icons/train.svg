@@ -1,0 +1,15 @@
+<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <rect rx="2" id="svg_1" height="9.375" width="14" y="1.9375" x="0.9375" opacity="undefined" stroke="#000" fill="#fff"/>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_2" y2="6.15" x2="14.75" y1="6.15" x1="0.96875" opacity="undefined" fill-opacity="null" stroke-opacity="null" stroke-dasharray="null" stroke-width="null" stroke="#000" fill="#fff"/>
+  <rect rx="1" id="svg_3" height="3.6875" width="13.25" y="6.775" x="1.21875" opacity="undefined" stroke-dasharray="null" stroke-width="null" stroke="#000000" fill="#000000"/>
+  <ellipse ry="1.03125" rx="1.03125" id="svg_4" cy="9" cx="3.5625" opacity="undefined" stroke-opacity="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#ffffff"/>
+  <ellipse ry="1.03125" rx="1.03125" id="svg_5" cy="8.9375" cx="12.25" opacity="undefined" stroke-opacity="null" stroke-dasharray="null" stroke-width="0" stroke="#000000" fill="#ffffff"/>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_6" y2="14.9" x2="1.78125" y1="11" x1="5" opacity="undefined" fill-opacity="null" stroke-opacity="null" stroke-dasharray="null" stroke="#000000" fill="none"/>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_7" y2="14.9" x2="13.78125" y1="11.4625" x1="11.03125" opacity="undefined" fill-opacity="null" stroke-opacity="null" stroke-dasharray="null" stroke="#000000" fill="none"/>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_8" y2="12.9625" x2="12.03125" y1="12.9625" x1="3.59375" opacity="undefined" fill-opacity="null" stroke-opacity="null" stroke-dasharray="null" stroke-width="null" stroke="#000000" fill="none"/>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_9" y2="14.4" x2="13.34375" y1="14.4" x1="2.46875" opacity="undefined" fill-opacity="null" stroke-opacity="null" stroke-dasharray="null" stroke-width="null" stroke="#000000" fill="none"/>
+  <line stroke-linecap="null" stroke-linejoin="null" id="svg_10" y2="14.7125" x2="28.15625" y1="14.7125" x1="28.09375" opacity="undefined" fill-opacity="null" stroke-opacity="null" stroke-dasharray="null" stroke-width="null" stroke="#000000" fill="none"/>
+ </g>
+
+</svg>
